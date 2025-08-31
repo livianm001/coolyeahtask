@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* HEADER STYLES */
+        header {
+            background: linear-gradient(to right, #3498db, #8e44ad, #e74c3c);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        .header-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* NAVIGATION STYLES */
+        nav {
+            background: #34495e;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            display: inline-block;
+            background: #3498db;
+            margin: 0 10px;
+        }
+        
+        nav a:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* MAIN CONTENT LAYOUT - USING TABLE */
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .main-table td {
+            vertical-align: top;
+            padding: 0;
+        }
+        
+        /* SIDEBAR STYLES */
+        .sidebar {
+            width: 35%;
+            background: #f8f9fa;
+            padding: 20px;
+            border-right: 1px solid #eee;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 70%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: #2c3e50;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .sidebar h2 {
+            color: #3498db;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* CONTENT STYLES */
+        .content {
+            padding: 30px;
+        }
+        
+        .profile {
+            margin-bottom: 30px;
+        }
+        
+        .profile h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .profile-details {
+            display: table;
+            width: 100%;
+        }
+        
+        .profile-info {
+            display: table-row;
+        }
+        
+        .profile-info p {
+            display: table-cell;
+            padding: 8px 15px;
+            border-bottom: 1px dotted #eee;
+        }
+        
+        .profile-info p:first-child {
+            font-weight: bold;
+            width: 35%;
+        }
+        
+        .likes-dislikes {
+            display: table;
+            width: 100%;
+            border-spacing: 0 15px;
+        }
+        
+        .likes, .dislikes {
+            display: table-cell;
+            width: 50%;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            vertical-align: top;
+        }
+        
+        .likes h3, .dislikes h3 {
+            color: #2ecc71;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+        }
+        
+        .dislikes h3 {
+            color: #e74c3c;
+            border-bottom-color: #e74c3c;
+        }
+        
+        .likes h3 {
+            border-bottom-color: #2ecc71;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #3498db;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .likes li:before {
+            color: #2ecc71;
+        }
+        
+        .dislikes li:before {
+            color: #e74c3c;
+        }
+        
+        /* FOOTER STYLES */
+        footer {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .sidebar, .content {
+                display: table-cell;
+            }
+            
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .likes, .dislikes {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .profile-info p {
+                display: block;
+                width: 100%;
+            }
+            
+            .profile-info p:first-child {
+                width: 100%;
+                padding-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>GET TO KNOW ME</h1>
+                <p>coolyeah task.</p>
+            </div>
+        </header>
+        
+        <nav>
+            <a href="https://www.linkedin.com/in/debora-elsa-naomi-tampubolon-600aab370?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+        </nav>
+        
+        <table class="main-table">
+            <tr>
+                <td class="sidebar">
+                    <h2>tenxi nyempil</h2>
+                    <div class="video-container">
+                        <iframe src="vid.mp4" title="mejikuhibiniu jersey ver" allowfullscreen></iframe>
+                    </div>
+                </td>
+                <td class="content">
+                    <section class="profile">
+                        <h2>'bout me</h2>
+                        <div class="profile-details">
+                            <div class="profile-info">
+                                <p>Name:</p>
+                                <p>Debora Elsa Naomi Tampubolon</p>
+                            </div>
+                            <div class="profile-info">
+                                <p>NIM aka ID:</p>
+                                <p>251402121</p>
+                            </div>
+                            <div class="profile-info">
+                                <p>Faculty:</p>
+                                <p>Failkom-TI (pacil)</p>
+                            </div>
+                            <div class="profile-info">
+                                <p>Major:</p>
+                                <p>Teknologi Informasi</p>
+                        </div>
+                    </section>
+                    
+                    <section class="likes-dislikes">
+                        <div class="likes">
+                            <h3>YESHH</h3>
+                            <ul>
+                                <li>Mograph</li>
+                                <li>Ghibliiii</li>
+                                <li>Eat nom nom</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="dislikes">
+                            <h3>big 'NOO'</h3>
+                            <ul>
+                                <li>Liar</li>
+                                <li>attention seeker</li>
+                            </ul>
+                        </div>
+                    </section>
+                </td>
+            </tr>
+        </table>
+        
+        <footer>
+            <p>&copy; 2025 Personal Card - github. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
